@@ -25,7 +25,7 @@ class ModelDemo(ServeGradio):
     examples = [["Cat reading a book"], ["Going into the space"]]
 
     def __init__(self):
-        super().__init__(parallel=True)
+        super().__init__(parallel=True, host='0.0.0.0', port=8888)
 
     def build_model(self) -> CLIPDemo:
         logger.info("loading model...")
