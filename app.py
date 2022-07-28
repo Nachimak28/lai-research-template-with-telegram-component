@@ -7,6 +7,7 @@ from lightning.app.frontend.web import StaticWebFrontend
 from poster import Poster
 from rich import print
 from rich.logging import RichHandler
+from lit_telegram import LitTelegram
 
 from research_app.components.jupyter_notebook import JupyterLab
 from research_app.components.model_demo import ModelDemo
@@ -69,9 +70,16 @@ class ResearchApp(L.LightningFlow):
         self.poster = Poster(resource_dir=self.poster_dir)
         self.notebook_viewer = None
         self.tab_order = tab_order
+        self.lit_telegram_message = LitTelegram(
+            telegram_token=os.environ['API_TOKEN'], 
+            telegram_chat_id=os.environ['CHAT_ID']
+        )
+
+        self.admin_name = 'Nachi'
 
         if github:
             clone_repo(github)
+            self.lit_telegram_message.send_text(f'Hi {self.admin_name}, the repos are cloned')
 
         if launch_jupyter_lab:
             self.jupyter_lab = JupyterLab()
@@ -82,6 +90,7 @@ class ResearchApp(L.LightningFlow):
 
         if launch_gradio:
             self.model_demo = ModelDemo()
+            
 
         if notebook_path:
             self.notebook_viewer = StaticNotebookViewer(notebook_path)
@@ -92,8 +101,10 @@ class ResearchApp(L.LightningFlow):
         self.poster.run()
         if self.jupyter_lab:
             self.jupyter_lab.run()
+            self.lit_telegram_message.send_text(f'Hi {self.admin_name}, Jupyter lab has been launched')
         if self.model_demo:
             self.model_demo.run()
+            self.lit_telegram_message.send_text(f'Hi {self.admin_name}, Gradio server has been launched')
 
     def configure_layout(self) -> List[Dict[str, str]]:
         tabs = []
