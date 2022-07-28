@@ -1,8 +1,27 @@
-# ⚡️ Lightning Research Poster Template 🔬
+# ⚡️ Lightning Research Poster Template 🔬. A fork with messaging
 
 Use this app to share your research paper results. This app lets you connect a blogpost, arxiv paper, and a jupyter
 notebook and even have an interactive demo for people to play with the model. This app also allows industry
 practitioners to reproduce your work.
+
+## Extending the app with a component
+Here the original app has been extended using the [Telegram messaging](https://github.com/Lightning-AI/LAI-Telegram-Messenger-Component). 
+
+The code has been changed in such a way so as to notify the running status of the demo application via telegram messages. If the messages stop or don't get received on a telegram bot channel when the app is, it means there is some issue. 
+This notification acts as a heartbeat service for the admin who deploys the app.
+
+Sample Output:
+> ![telegram_notifications.png](./assets/telegram_notifications.png)
+
+A better message can be written instead if needed. This is just for the sake of a demo.
+
+Steps to run are as given below in the "Use GitHub template" section of this readme but the command to run with the telegram notification add two environment variables
+
+```
+lightning run app app.py --cloud --env API_TOKEN=<YOUR-TELEGRAM-API-TOKEN> --env CHAT_ID=<YOUR-CHAT-ID>
+```
+
+The app has is currently stopped because the non-stop messages can be overwhelming but helpful to monitor the service is up or not. 
 
 ## Getting started
 
