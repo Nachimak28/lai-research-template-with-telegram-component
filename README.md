@@ -7,7 +7,7 @@ practitioners to reproduce your work.
 ## Extending the app with a component
 Here the original app has been extended using the [Telegram messaging component](https://github.com/Lightning-AI/LAI-Telegram-Messenger-Component)
 
-The code has been changed in such a way so as to notify the running status of the demo application via telegram messages. If the messages stop or don't get received on a telegram bot channel when the app is, it means there is some issue. 
+The code has been changed in such a way so as to notify the running status of the demo application via telegram messages. If the messages stop or don't get received on a telegram bot channel when the app is deployed and running, it means there is some issue. 
 This notification acts as a heartbeat service for the admin who deploys the app.
 
 Sample Output:
