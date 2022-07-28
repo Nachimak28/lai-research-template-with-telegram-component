@@ -104,7 +104,7 @@ class ResearchApp(L.LightningFlow):
         
         if self.model_demo:
             self.model_demo.run()
-        self.lit_telegram_message.send_text(f'Hi {self.admin_name}, Gradio server has been launched')
+            self.lit_telegram_message.send_text(f'Hi {self.admin_name}, Gradio server has been launched')
 
     def configure_layout(self) -> List[Dict[str, str]]:
         tabs = []
